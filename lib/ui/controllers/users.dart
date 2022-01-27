@@ -1,15 +1,16 @@
+import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:getxtest/models/user.dart';
 import 'package:getxtest/services/repository.dart';
+import 'package:getxtest/utils/states.dart';
 
 class UsersController extends GetxController{
   final List<User> records = <User>[].obs;
-  RxBool loading = false.obs;
-  RxBool error = false.obs;
+  Rx<UsersState> state = UsersState.success.obs;
   RxString errorDesc = "".obs;
 
   _getUsers() async {
-    loading(true);
+    state(UsersState.loading);
 
     try{
       // Get users from repository
@@ -19,12 +20,13 @@ class UsersController extends GetxController{
       for(var user in users){
         records.add(user);
       }
+
+      state(UsersState.success);
+
     } catch(e) {
-      error(true);
+      state(UsersState.error);
       errorDesc("No connection");
     }
-
-    loading(false);
 
   }
 
