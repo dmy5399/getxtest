@@ -1,8 +1,8 @@
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:getxtest/env.dart';
 import 'package:getxtest/exp/exp_models.dart';
+import 'package:getxtest/utils/exceptions.dart';
 
 class UsersProvider{
   final String _url = "$url/users";
@@ -17,12 +17,14 @@ class UsersProvider{
 
     } on DioError catch (e){
 
-      switch (e.response!.statusCode.toString()){
-        default:
-          break;
+      if(e.response != null){
+        switch (e.response!.statusCode.toString()){
+          default:
+            break;
+        }
       }
 
-      return "Error";
+      throw InternetConnectionException();
     }
   }
 
