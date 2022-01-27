@@ -10,13 +10,26 @@ class UsersView extends StatelessWidget {
   @override
   Widget build(context) {
 
-    usersCr.getUsers();
-
     return Scaffold(
       appBar: AppBar(title: const Text("Users")),
-      body: Center(
-        child: Obx( () => Text(usersCr.records.toString())),
-      ),
+      body: Obx((){
+        if(usersCr.loading()){
+          return const Center(child: CircularProgressIndicator(),);
+        } else {
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                for(var el in usersCr.records)
+                  SizedBox(
+                    width: Get.width,
+                    height: 50,
+                    child: Text(el.email.toString()),
+                  ),
+              ],
+            ),
+          );
+        }
+      })
     );
   }
 }

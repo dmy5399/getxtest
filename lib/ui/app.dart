@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       // Initializing routes
       getPages: [
         GetPage(name: "/home", page: () => HomeView(), binding: HomeBinding()),
-        GetPage(name: "/users", page: () => UsersView(), binding: HomeBinding()),
+        GetPage(name: "/users", page: () => UsersView(), binding: UsersBinding()),
       ],
     );
   }

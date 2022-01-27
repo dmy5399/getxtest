@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:hive_flutter/hive_flutter.dart';
 
 class User {
@@ -25,12 +27,12 @@ class User {
     return User(
       id: json['id'],
       name: json['name'],
-      username: json['username,'],
-      email: json['email,'],
-      address: json['address,'],
-      phone: json['phone,'],
-      website: json['website,'],
-      company: json['company,'],
+      username: json['username'],
+      email: json['email'],
+      address: json['address'],
+      phone: json['phone'],
+      website: json['website'],
+      company: json['company'],
     );
   }
 }

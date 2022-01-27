@@ -1,7 +1,8 @@
+import 'package:getxtest/exp/exp_models.dart';
 import 'package:getxtest/services/provider.dart';
 
 class UsersRepository {
-  static UsersProvider _provider = UsersProvider();
+  static final UsersProvider _provider = UsersProvider();
 
   static getAll() {
     var records = _provider.getAll();
